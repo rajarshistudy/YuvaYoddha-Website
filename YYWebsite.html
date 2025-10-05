@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yuva Yoddha | Youth for Change</title>
+  <meta name="description" content="Yuva Yoddha is a student-led NGO in Lucknow, India, working on women’s health, literacy, biodiversity, and more. Join us—volunteer, donate, partner." />
+  <meta name="theme-color" content="#7C3AED" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #070816;
+      --surface: #0f1024;
+      --text: #e7e7ff;
+      --muted: #a7a7c7;
+      --brand: #7C3AED; /* violet-600 */
+      --brand-2: #08D9D6; /* teal-ish */
+      --accent: #F72585; /* pink */
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --error:#ef4444;
+      --card: #141636;
+      --shadow: rgba(2, 4, 31, .55);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1200px, 92vw);margin-inline:auto}
+
+    /* ===== Nav ===== */
+    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(160%) blur(10px);background:linear-gradient( to right, rgba(7,8,22,.75), rgba(7,8,22,.35));border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
+    .logo .mark{width:38px;height:38px;border-radius:10px;background:conic-gradient(from 210deg, var(--brand), var(--accent), var(--brand-2), var(--brand));box-shadow:0 8px 24px rgba(124,58,237,.45)}
+    .nav a{font-weight:600;opacity:.9}
+    .nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}
+    .cta{padding:10px 16px;border-radius:999px;background:linear-gradient(135deg, var(--brand), var(--accent));box-shadow:0 8px 24px rgba(124,58,237,.45);display:inline-flex;align-items:center;gap:10px}
+    .cta:hover{transform:translateY(-1px)}
+
+    /* ===== Hero ===== */
+    .hero{position:relative;overflow:hidden}
+    .hero .bgfx{position:absolute;inset:-20%;background:radial-gradient(1200px 600px at 20% -10%, rgba(124,58,237,.35), transparent 60%), radial-gradient(1000px 700px at 90% 10%, rgba(8,217,214,.22), transparent 55%), radial-gradient(1200px 800px at 40% 120%, rgba(247,37,133,.18), transparent 60%);filter:blur(30px);z-index:-1}
+    .hero .orbit{position:absolute;inset:0;pointer-events:none}
+    .hero .orb{position:absolute;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg, var(--brand), var(--accent));box-shadow:0 0 20px rgba(124,58,237,.7);animation:float 9s ease-in-out infinite}
+    .orb.o1{top:14%;left:8%}
+    .orb.o2{top:50%;left:92%;animation-duration:11s}
+    .orb.o3{top:82%;left:12%;animation-duration:13s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+    .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 0 48px}
+    .kicker{display:inline-flex;gap:8px;align-items:center;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.35);padding:8px 12px;border-radius:999px;font-weight:600;color:#dcd6ff}
+    .title{font-family:Poppins,Inter,sans-serif;font-size:clamp(36px, 4.5vw, 64px);line-height:1.08;margin:14px 0 12px}
+    .title .grad{background:linear-gradient(90deg, var(--brand), var(--accent), var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .sub{color:var(--muted);font-size:18px;max-width:60ch}
+    .actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:20px}
+    .btn{padding:12px 18px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));box-shadow:0 8px 24px var(--shadow);font-weight:700}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg, var(--brand), var(--accent));border-color:transparent}
+
+    .hero .card{background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:20px;box-shadow:0 20px 60px var(--shadow)}
+    .hero .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .badge{display:inline-flex;gap:8px;align-items:center;font-size:14px;color:#d6d6ff;background:rgba(8,217,214,.12);border:1px solid rgba(8,217,214,.35);padding:6px 10px;border-radius:999px}
+
+    /* ===== Section framing ===== */
+    section{padding:72px 0}
+    .section-title{font-family:Poppins,Inter,sans-serif;font-size:clamp(26px,3vw,40px);margin:0 0 10px}
+    .section-sub{color:var(--muted);margin:0 0 28px}
+
+    /* ===== Pill tabs ===== */
+    .pill-tabs{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);cursor:pointer}
+    .pill.active,.pill:hover{border-color:rgba(124,58,237,.55);box-shadow:0 6px 16px rgba(124,58,237,.25)}
+
+    /* ===== Cards ===== */
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px;box-shadow:0 12px 36px var(--shadow)}
+    .card h3{margin:12px 0 6px}
+    .card p{color:var(--muted)}
+
+    /* ===== Stats ===== */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+    .stat{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:20px;text-align:center}
+    .stat .num{font-size:38px;font-weight:900;letter-spacing:.5px}
+    .stat .label{color:var(--muted)}
+
+    /* ===== Programs grid (flip) ===== */
+    .flipgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;perspective:1000px}
+    .flip{position:relative;height:280px;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.6,.2,1)}
+    .flip:hover{transform:rotateY(180deg)}
+    .face{position:absolute;inset:0;padding:22px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.08);backface-visibility:hidden;background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.025));display:flex;flex-direction:column}
+    .back{transform:rotateY(180deg)}
+    .tag{display:inline-flex;gap:8px;align-items:center;padding:6px 10px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.12);opacity:.9;width:max-content}
+
+    /* ===== Gallery ===== */
+    .gallery{display:grid;grid-template-columns:repeat(6, 1fr);gap:10px}
+    .gallery .g{border-radius:12px;aspect-ratio:1/1;background:linear-gradient(135deg, rgba(124,58,237,.25), rgba(247,37,133,.25));border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 24px var(--shadow);position:relative;overflow:hidden}
+    .gallery .g::after{content:"PHOTO";position:absolute;inset:auto 8px 8px auto;font-size:10px;color:#eaeaff;background:rgba(7,8,22,.55);padding:3px 6px;border-radius:6px;border:1px solid rgba(255,255,255,.12)}
+
+    /* ===== Timeline ===== */
+    .timeline{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .tcard{position:relative;padding:18px 18px 18px 24px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08)}
+    .tcard::before{content:"";position:absolute;left:-7px;top:24px;width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg, var(--brand), var(--accent));box-shadow:0 0 0 4px rgba(124,58,237,.25)}
+
+    /* ===== CTA band ===== */
+    .band{background:linear-gradient(90deg, rgba(124,58,237,.35), rgba(8,217,214,.25));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+    /* ===== Form ===== */
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    form .full{grid-column:1 / -1}
+    .field{display:flex;flex-direction:column;gap:8px}
+    .field input,.field textarea, .field select{padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:var(--text)}
+    .helper{font-size:12px;color:var(--muted)}
+
+    /* ===== Footer ===== */
+    footer{padding:28px 0;border-top:1px solid rgba(255,255,255,.06);background:linear-gradient(180deg, rgba(255,255,255,.02), transparent)}
+
+    /* ===== Utilities ===== */
+    .row{display:flex;gap:12px;align-items:center}
+    .chip{padding:6px 10px;border:1px solid rgba(255,255,255,.12);border-radius:999px;opacity:.9}
+    .spacer{height:28px}
+
+    /* ===== Responsive ===== */
+    @media (max-width: 980px){
+      .hero .wrap{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr 1fr}
+      .flipgrid{grid-template-columns:1fr 1fr}
+      .timeline{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+      form{grid-template-columns:1fr}
+    }
+    @media (max-width: 640px){
+      .cards{grid-template-columns:1fr}
+      .flipgrid{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <header>
+    <div class="container nav">
+      <a href="#home" class="logo" aria-label="Yuva Yoddha Home">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Yuva Yoddha</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#mission">Mission</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#volunteer">Volunteer</a></li>
+        </ul>
+      </nav>
+      <a class="cta" href="#donate"><span>Donate</span> <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M13 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero">
+    <div class="bgfx"></div>
+    <div class="orbit"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+    <div class="container wrap">
+      <div>
+        <span class="kicker">Student‑led NGO • Lucknow, India</span>
+        <h1 class="title">Empowering youth to build a <span class="grad">healthier, smarter, greener</span> future.</h1>
+        <p class="sub">We run programs for women’s health & hygiene, functional literacy, and biodiversity conservation. Join our volunteer network across India and abroad—or partner with us to amplify impact.</p>
+        <div class="actions">
+          <a class="btn primary" href="#volunteer">Become a Volunteer</a>
+          <a class="btn" href="#programs">Explore Programs</a>
+          <a class="btn" href="https://www.instagram.com/yuvayoddha/" target="_blank" rel="noopener">Instagram ↗</a>
+        </div>
+      </div>
+      <div class="hero card" aria-label="Highlights">
+        <div class="grid">
+          <div>
+            <div class="badge">🚺 Women’s Health Camps</div>
+            <h3>4,000+ beneficiaries</h3>
+            <p class="sub">Menstrual hygiene awareness & kits distribution in urban and rural communities.</p>
+          </div>
+          <div>
+            <div class="badge">📚 Functional Literacy</div>
+            <h3>300+ learners</h3>
+            <p class="sub">Bridge classes and mentorship for school students to reduce drop‑outs.</p>
+          </div>
+          <div>
+            <div class="badge">🌱 Biodiversity</div>
+            <h3>12,000+ saplings</h3>
+            <p class="sub">Tree drives, waste segregation awareness, and local habitat restoration.</p>
+          </div>
+          <div>
+            <div class="badge">🤝 Global Alumni</div>
+            <h3>Chapters @ campuses</h3>
+            <p class="sub">Remote volunteering & fundraising by students worldwide.</p>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="row">
+          <span class="chip">Follow: <a style="margin-left:8px" href="https://www.instagram.com/yuvayoddha/" target="_blank" rel="noopener">@yuvayoddha</a></span>
+          <span class="chip"><a href="https://www.linkedin.com/in/yuva-yoddha-b66528227/" target="_blank" rel="noopener">LinkedIn</a></span>
+          <span class="chip">Email: <a href="mailto:contact@yuvayoddha.org">contact@yuvayoddha.org</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MISSION ===== -->
+  <section id="mission">
+    <div class="container">
+      <h2 class="section-title">Our Mission</h2>
+      <p class="section-sub">We unlock youth potential to solve local problems with scalable, community‑first solutions—centered on dignity, inclusion, and sustainability.</p>
+      <div class="pill-tabs" role="tablist" aria-label="Mission pillars">
+        <button class="pill active" data-pill="health">Women’s Health</button>
+        <button class="pill" data-pill="literacy">Functional Literacy</button>
+        <button class="pill" data-pill="biodiversity">Biodiversity</button>
+        <button class="pill" data-pill="community">Community Action</button>
+      </div>
+      <div class="spacer"></div>
+      <div class="cards" id="mission-cards">
+        <article class="card" data-tag="health">
+          <h3>Health & Hygiene Access</h3>
+          <p>Awareness workshops, period‑positive education, and distribution of kits in schools and slums; training peer champions to sustain change.</p>
+        </article>
+        <article class="card" data-tag="literacy">
+          <h3>After‑School Bridge Classes</h3>
+          <p>Math, reading, and digital skills to close learning gaps; mentor‑mentee cohorts linking Indian schools with college volunteers abroad.</p>
+        </article>
+        <article class="card" data-tag="biodiversity">
+          <h3>Greening & Waste Projects</h3>
+          <p>Tree plantation, plastic‑free drives, segregation workshops, and micro‑habitat restoration with local municipalities and RWAs.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROGRAMS ===== -->
+  <section id="programs">
+    <div class="container">
+      <h2 class="section-title">Programs that spark action</h2>
+      <p class="section-sub">Hover to flip a card and learn how to join or partner.</p>
+      <div class="flipgrid">
+        <div class="flip">
+          <div class="face">
+            <span class="tag">🚺 Health</span>
+            <h3>Period Positivity Camp</h3>
+            <p>School & community workshops with nurses and peer leaders. Kit distribution + myth‑busting Q&A.</p>
+            <div class="spacer"></div>
+            <div class="row"><span class="chip">Monthly</span><span class="chip">Lucknow + virtual</span></div>
+          </div>
+          <div class="face back">
+            <h3>Get Involved</h3>
+            <p>Volunteer as facilitator, sponsor 100 kits, or host a camp at your campus/office.</p>
+            <div class="spacer"></div>
+            <a class="btn" href="#volunteer">Volunteer</a>
+          </div>
+        </div>
+        <div class="flip">
+          <div class="face">
+            <span class="tag">📚 Literacy</span>
+            <h3>Bridge Learning Pods</h3>
+            <p>Small groups with structured curriculum; weekly progress check‑ins; reward‑based milestones.</p>
+            <div class="spacer"></div>
+            <div class="row"><span class="chip">On‑ground + remote</span><span class="chip">Age 9–16</span></div>
+          </div>
+          <div class="face back">
+            <h3>Get Involved</h3>
+            <p>Mentor virtually (1–2 hrs/week) or donate stationery & tablets. Institutions can adopt a pod.</p>
+            <div class="spacer"></div>
+            <a class="btn" href="#volunteer">Mentor</a>
+          </div>
+        </div>
+        <div class="flip">
+          <div class="face">
+            <span class="tag">🌱 Biodiversity</span>
+            <h3>Urban Greens</h3>
+            <p>Native tree drives, micro‑gardens, composting hubs, and neighborhood clean‑ups with civic partners.</p>
+            <div class="spacer"></div>
+            <div class="row"><span class="chip">Quarterly</span><span class="chip">Open to all</span></div>
+          </div>
+          <div class="face back">
+            <h3>Get Involved</h3>
+            <p>Sponsor saplings or co‑host an event in your locality; corporations welcome for CSR days.</p>
+            <div class="spacer"></div>
+            <a class="btn" href="#donate">Sponsor</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IMPACT ===== -->
+  <section id="impact">
+    <div class="container">
+      <div class="band">
+        <div>
+          <h2 class="section-title">Impact in numbers</h2>
+          <p class="section-sub">Live counters animate when in view. Data is illustrative—plug in your real stats.</p>
+        </div>
+        <a class="btn" href="#donate">Support the mission</a>
+      </div>
+      <div class="stats" aria-live="polite">
+        <div class="stat"><div class="num" data-count="4000">0</div><div class="label">Women reached</div></div>
+        <div class="stat"><div class="num" data-count="300">0</div><div class="label">Learners mentored</div></div>
+        <div class="stat"><div class="num" data-count="12000">0</div><div class="label">Saplings planted</div></div>
+        <div class="stat"><div class="num" data-count="500">0</div><div class="label">Active volunteers</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section>
+    <div class="container">
+      <h2 class="section-title">Moments from the field</h2>
+      <p class="section-sub">Replace placeholders with photos from events. Add alt text for accessibility.</p>
+      <div class="gallery" aria-label="Event photos">
+        <div class="g" role="img" aria-label="Workshop"></div>
+        <div class="g" role="img" aria-label="Tree plantation"></div>
+        <div class="g" role="img" aria-label="Literacy class"></div>
+        <div class="g" role="img" aria-label="Community clean up"></div>
+        <div class="g" role="img" aria-label="Health camp"></div>
+        <div class="g" role="img" aria-label="Volunteer meetup"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EVENTS / TIMELINE ===== -->
+  <section id="events">
+    <div class="container">
+      <h2 class="section-title">What’s happening next</h2>
+      <p class="section-sub">Join an upcoming event—on‑ground in Lucknow or remote.</p>
+      <div class="timeline">
+        <div class="tcard">
+          <h3>Oct 20 • Period Positivity @ Govt. Inter College</h3>
+          <p class="section-sub">Seeking 12 volunteers • Kit packing + facilitation • Sponsor slots open</p>
+          <div class="row"><a class="btn" href="#volunteer">Sign up</a><a class="btn" href="#donate">Sponsor</a></div>
+        </div>
+        <div class="tcard">
+          <h3>Nov 9 • Urban Greens—Sapling Drive</h3>
+          <p class="section-sub">Target 1,000 saplings • Park 3, Gomti Nagar • All ages welcome</p>
+          <div class="row"><a class="btn" href="#volunteer">Volunteer</a></div>
+        </div>
+        <div class="tcard">
+          <h3>Dec 1 • Bridge Pod Mentor Onboarding (Remote)</h3>
+          <p class="section-sub">Zoom orientation • 60 mins • College students & professionals</p>
+          <div class="row"><a class="btn" href="#volunteer">Apply</a></div>
+        </div>
+        <div class="tcard">
+          <h3>Dec 22 • Clean Streets Challenge</h3>
+          <p class="section-sub">Ward‑level plastic‑free drive with local RWA • Prizes for top lanes</p>
+          <div class="row"><a class="btn" href="#volunteer">Participate</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PARTNERS / CTA ===== -->
+  <section id="donate">
+    <div class="container">
+      <div class="band">
+        <div>
+          <h3 style="margin:0">Fuel the mission</h3>
+          <p class="section-sub" style="margin:6px 0 0">Every ₹500 funds a hygiene kit; ₹1,200 supports a learner for a month; ₹100 plants and cares for a sapling.</p>
+        </div>
+        <div class="row">
+          <a class="btn primary" href="#" onclick="alert('Connect your preferred payment link here (Razorpay/UPI/Stripe).')">Donate Now</a>
+          <a class="btn" href="#" onclick="alert('Link a CSR/partner deck PDF here.')">CSR Deck</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VOLUNTEER FORM ===== -->
+  <section id="volunteer">
+    <div class="container">
+      <h2 class="section-title">Volunteer / Partner</h2>
+      <p class="section-sub">Tell us about you. We’ll get back within 48 hours. (This demo validates and prints the data to console.)</p>
+      <form id="vform" novalidate>
+        <div class="field">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" placeholder="Your name" required />
+          <small class="helper">Required</small>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="phone">Phone / WhatsApp</label>
+          <input id="phone" name="phone" placeholder="Include country code" />
+        </div>
+        <div class="field">
+          <label for="role">I want to</label>
+          <select id="role" name="role">
+            <option>Volunteer</option>
+            <option>Mentor</option>
+            <option>Partner / CSR</option>
+            <option>Donate</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="msg">Message</label>
+          <textarea id="msg" name="msg" rows="5" placeholder="Share skills, availability, location, or ideas"></textarea>
+        </div>
+        <div class="field full">
+          <button class="btn primary" type="submit">Submit</button>
+        </div>
+      </form>
+      <p class="section-sub">Prefer email? <a href="mailto:contact@yuvayoddha.org">contact@yuvayoddha.org</a></p>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap">
+      <div class="row">
+        <span class="chip">© <span id="year"></span> Yuva Yoddha</span>
+        <span class="chip"><a href="https://www.instagram.com/yuvayoddha/" target="_blank" rel="noopener">Instagram</a></span>
+        <span class="chip"><a href="https://www.linkedin.com/in/yuva-yoddha-b66528227/" target="_blank" rel="noopener">LinkedIn</a></span>
+      </div>
+      <div class="row">
+        <span class="chip">Made with ♥ by volunteers</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Pill tabs filter for mission cards
+    const pills = document.querySelectorAll('.pill');
+    const mCards = document.querySelectorAll('#mission-cards [data-tag]');
+    pills.forEach(p => p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      const tag = p.dataset.pill;
+      mCards.forEach(card => {
+        card.style.display = (tag && card.dataset.tag !== tag && tag !== 'community') ? 'none' : 'block';
+      });
+    }));
+
+    // Stat counters animate when visible
+    const counters = document.querySelectorAll('.num[data-count]');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const el = e.target; const target = +el.dataset.count; let cur = 0;
+          const step = Math.max(1, Math.floor(target / 120));
+          const inc = () => { cur += step; if(cur >= target){ el.textContent = target.toLocaleString(); } else { el.textContent = cur.toLocaleString(); requestAnimationFrame(inc); } };
+          inc();
+          io.unobserve(el);
+        }
+      })
+    }, {threshold:.35});
+    counters.forEach(c => io.observe(c));
+
+    // Volunteer form (demo)
+    const form = document.getElementById('vform');
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      if(!data.name || !data.email){
+        alert('Please fill in Name and Email.');
+        return;
+      }
+      console.log('Volunteer form submission:', data);
+      alert('Thanks! We\'ll reach out soon. (This demo logs data to console.)');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
